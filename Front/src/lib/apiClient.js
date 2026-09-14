@@ -29,10 +29,21 @@ async function request(path, { method = 'GET', body, token, headers } = {}) {
     throw new ApiError('No se pudo conectar con el servidor. Verificá tu conexión.', 0)
   }
 
-  const contentType = response.headers.get('content-type') || ''
-  const data = contentType.includes('application/json') ? await response.json() : null
+  // 204 (ej. DELETE) legítimamente no trae cuerpo.
+  if (response.status === 204) return null
 
-  if (!response.ok) {
+  // Si la respuesta no es JSON, se trata como error aunque el status HTTP
+  // sea 200: en producción, si VITE_API_URL apunta mal, el rewrite de SPA
+  // (vercel.json) puede devolver el index.html con status 200 en vez de
+  // fallar la petición — sin este chequeo, ese HTML se interpretaba como
+  // "éxito sin datos" (null) y los componentes reventaban al tratar de
+  // iterar un array que en realidad era null, tirando abajo toda la app
+  // (no hay Error Boundary global a propósito, ver ErrorBoundary.jsx).
+  const contentType = response.headers.get('content-type') || ''
+  const isJson = contentType.includes('application/json')
+  const data = isJson ? await response.json().catch(() => null) : null
+
+  if (!response.ok || !isJson) {
     const message = data?.message || `Error ${response.status} al conectar con el servidor.`
     throw new ApiError(message, response.status, data?.errors)
   }

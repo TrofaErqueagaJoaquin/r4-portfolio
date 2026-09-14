@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding: var(--space-5);
+  background: var(--color-error-soft);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-md);
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
