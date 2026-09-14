@@ -5,12 +5,11 @@
 -- database/schema.sql, una sola vez (los conflictos de slug/nombre se
 -- ignoran si se vuelve a correr por accidente).
 --
--- OJO — fechas a confirmar: las marcadas con un comentario "estimada"
--- se completaron sin una fecha exacta provista y son una aproximación
--- razonable (temporada de verano en Mar del Plata para el foodtruck,
--- inicio de ciclo lectivo en marzo para la secundaria y la práctica).
--- Corregir en Supabase (tabla `experiences`) apenas se tengan las
--- fechas reales — no afecta al resto del sitio.
+-- Fechas de experiencia confirmadas por Joaquín (2026-09-14). Solo el
+-- día exacto dentro del mes queda como aproximación razonable en los
+-- casos donde no se precisó — no afecta al resto del sitio.
+-- Pendiente (no bloquea nada): nombre exacto de la especialidad técnica
+-- (termina en ~1 mes y medio desde la fecha de esta carga).
 -- ============================================================
 
 insert into technologies (name, slug) values
@@ -84,7 +83,7 @@ insert into experiences (title, organization, description, start_date, end_date,
     'Estudiante de Técnico en Informática',
     'Escuela Técnica N°5 "Amancio Williams" (Mar del Plata)',
     'Formación técnica en informática: programación y desarrollo web, bases de datos relacionales, redes (armado de cables RJ45, conexión de dispositivos), mantenimiento de PC y electrónica con Arduino. Participación en competencias provinciales de robótica.',
-    '2020-03-01', -- estimada: inicio de ciclo lectivo
+    '2020-03-01', -- confirmado (marzo, inicio de ciclo lectivo)
     null,
     'educacion'
   ),
@@ -92,7 +91,7 @@ insert into experiences (title, organization, description, start_date, end_date,
     'Construcción, reformas y mantenimiento',
     'Junto a mi papá',
     'Participación en reformas completas y trabajos de mantenimiento: plomería, gas y reparación de calefones. Tareas prácticas de construcción, colaborando en la organización del trabajo y resolviendo problemas concretos durante las obras.',
-    '2021-01-01', -- estimada: sin fecha exacta provista, trabajo informal y periódico
+    '2021-01-01', -- confirmado: arranca en 2021 (mes exacto no provisto, trabajo informal y periódico)
     null,
     'trabajo'
   ),
@@ -100,15 +99,15 @@ insert into experiences (title, organization, description, start_date, end_date,
     'Venta al público en foodtruck',
     'Foodtruck de productos dulces',
     'Atención directa a clientes, manejo de caja, cobros y cálculos rápidos en un entorno de trabajo dinámico, durante varias temporadas de verano.',
-    '2023-12-01', -- estimada: temporada de verano, sin años exactos provistos
-    '2026-02-28', -- estimada
+    '2023-12-01', -- confirmado: temporada de verano 2023-24 (día exacto no provisto)
+    '2026-02-28', -- confirmado: última temporada, verano 2025-26 (día exacto no provisto)
     'trabajo'
   ),
   (
     'Práctica profesionalizante en Exceser',
     'Exceser',
     'Práctica profesionalizante en un entorno de trabajo real, enfocada en el diseño de dashboards y soluciones de visualización de datos. Aprendizaje y uso de Power BI y Figma para organizar y presentar información de forma clara y útil.',
-    '2026-03-01', -- estimada: se indicó año 2026, en curso
+    '2026-07-01', -- confirmado: julio 2026 (día exacto no provisto)
     null,
     'trabajo'
   );
