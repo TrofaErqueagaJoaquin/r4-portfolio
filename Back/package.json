@@ -1,0 +1,24 @@
+{
+  "name": "r4-portfolio-back",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "R4 - Portfolio personal y profesional (backend Node.js + Express + Supabase).",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "engines": {
+    "node": ">=20.14.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "resend": "^6.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

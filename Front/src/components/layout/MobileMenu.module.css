@@ -1,0 +1,35 @@
+.panel {
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+@media (min-width: 860px) {
+  .panel {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5) var(--space-6);
+}
+
+.link {
+  display: block;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.link:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.link[data-active='true'] {
+  color: var(--color-primary);
+}

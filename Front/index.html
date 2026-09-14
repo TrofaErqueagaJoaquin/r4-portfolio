@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0d13" />
+    <meta
+      name="description"
+      content="Portfolio personal y profesional — estudiante de informática enfocado en tecnología, automatización y resolución de problemas. Proyecto escolar R4."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Portfolio | En construcción</title>
+    <script>
+      // Se resuelve el tema ANTES de que React monte para evitar el
+      // "flash" de tema incorrecto en la primera pintura de la página.
+      // useTheme (src/hooks/useTheme.js) usa la misma clave y sigue
+      // sincronizado con este valor durante el resto de la sesión.
+      ;(function () {
+        try {
+          var KEY = 'portfolio-theme'
+          var saved = localStorage.getItem(KEY)
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var theme = saved === 'light' || saved === 'dark' ? saved : prefersDark ? 'dark' : 'light'
+          document.documentElement.setAttribute('data-theme', theme)
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

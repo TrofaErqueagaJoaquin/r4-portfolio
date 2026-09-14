@@ -1,0 +1,19 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  overflow: hidden;
+  transition: background-color var(--transition-fast);
+}
+
+.toggle:hover {
+  background: var(--color-surface-hover);
+}
+
+.iconWrapper {
+  display: inline-flex;
+}

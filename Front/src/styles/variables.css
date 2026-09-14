@@ -1,0 +1,111 @@
+/*
+ * Tokens de diseño (colores, tipografía, espaciado, sombras).
+ * Todo el sistema visual se apoya en estas variables para que el modo
+ * claro/oscuro sea un simple cambio de valores, no una reescritura de
+ * estilos. `:root` define el tema claro (y sirve de fallback si JS está
+ * deshabilitado); [data-theme='dark'] sobreescribe la paleta para oscuro.
+ * El atributo data-theme lo controlan index.html (carga inicial) y
+ * useTheme (src/hooks/useTheme.js) durante la sesión.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Fondos y superficies */
+  --color-bg: #f4f6f9;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #edf0f4;
+  --color-border: #dde2e8;
+  --color-border-strong: #c3cad3;
+
+  /* Texto */
+  --color-text: #12151b;
+  --color-text-muted: #4d5561;
+  --color-text-faint: #7a8290;
+  --color-on-primary: #ffffff;
+  --color-on-accent: #052e2a;
+
+  /* Marca */
+  --color-primary: #2953e0;
+  --color-primary-hover: #1f42b8;
+  --color-primary-soft: rgba(41, 83, 224, 0.1);
+  --color-accent: #0a9c88;
+  --color-accent-soft: rgba(10, 156, 136, 0.12);
+
+  /* Estados */
+  --color-success: #157a47;
+  --color-success-soft: rgba(21, 122, 71, 0.12);
+  --color-error: #c22b3a;
+  --color-error-soft: rgba(194, 43, 58, 0.1);
+  --color-warning: #a1650a;
+  --color-warning-soft: rgba(161, 101, 10, 0.12);
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(18, 21, 27, 0.06), 0 1px 1px rgba(18, 21, 27, 0.04);
+  --shadow-md: 0 8px 24px rgba(18, 21, 27, 0.08);
+  --shadow-lg: 0 24px 48px rgba(18, 21, 27, 0.14);
+
+  /* Tipografía */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Radios y layout */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+  --container-width: 1180px;
+  --header-height: 72px;
+
+  /* Espaciado (escala de 4px) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Movimiento */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  --focus-ring: 0 0 0 3px var(--color-primary-soft);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #0a0d13;
+  --color-bg-elevated: #10141b;
+  --color-surface: #131822;
+  --color-surface-hover: #1a2129;
+  --color-border: #232b38;
+  --color-border-strong: #303a4a;
+
+  --color-text: #e9ecf2;
+  --color-text-muted: #a4adba;
+  --color-text-faint: #6b7482;
+  --color-on-primary: #060810;
+  --color-on-accent: #04140f;
+
+  --color-primary: #6d93ff;
+  --color-primary-hover: #8fabff;
+  --color-primary-soft: rgba(109, 147, 255, 0.16);
+  --color-accent: #2fe0c4;
+  --color-accent-soft: rgba(47, 224, 196, 0.14);
+
+  --color-success: #4fd484;
+  --color-success-soft: rgba(79, 212, 132, 0.14);
+  --color-error: #ff6b7a;
+  --color-error-soft: rgba(255, 107, 122, 0.14);
+  --color-warning: #f2b84f;
+  --color-warning-soft: rgba(242, 184, 79, 0.14);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+}

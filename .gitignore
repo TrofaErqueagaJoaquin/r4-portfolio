@@ -1,0 +1,26 @@
+# Dependencias
+node_modules/
+
+# Builds
+Front/dist/
+Back/dist/
+
+# Variables de entorno (contienen credenciales, nunca se versionan)
+.env
+.env.local
+.env.*.local
+Front/.env
+Back/.env
+
+# Logs
+npm-debug.log*
+*.log
+
+# Editor / SO
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
