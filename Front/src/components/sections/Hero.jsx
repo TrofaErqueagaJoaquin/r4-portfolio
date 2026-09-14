@@ -32,11 +32,12 @@ export function Hero() {
         <motion.div variants={container} initial="hidden" animate="visible" className={styles.content}>
           <motion.span variants={item} className={styles.eyebrow}>
             <Sparkles size={14} aria-hidden="true" />
-            Contenido provisorio — proyecto escolar R4
+            Proyecto escolar R4
           </motion.span>
 
           <motion.h1 variants={item} className={styles.title}>
             Hola, soy <span className="gradient-text">{profile.name}</span>
+            {profile.nickname && <span className={styles.nickname}> ({profile.nickname})</span>}
           </motion.h1>
 
           <motion.p variants={item} className={styles.role}>

@@ -1,31 +1,31 @@
 // Contenido estático de la sección "Objetivos e intereses". No requiere
 // base de datos: es texto de presentación, no un recurso que se liste,
 // filtre o administre (a diferencia de proyectos, habilidades o experiencia).
-import { Cpu, Workflow, Lightbulb, GraduationCap } from 'lucide-react'
+import { Code2, Cpu, Lightbulb, GraduationCap } from 'lucide-react'
 
 export const goals = [
   {
-    id: 'automatizacion',
-    icon: Workflow,
-    title: 'Automatización',
-    description: 'Detectar tareas repetitivas y resolverlas con scripts o pequeñas herramientas a medida.',
+    id: 'desarrollo-web',
+    icon: Code2,
+    title: 'Desarrollo web',
+    description: 'Seguir mejorando en desarrollo web, construyendo interfaces claras y sistemas que la gente realmente use.',
   },
   {
-    id: 'tecnologia',
+    id: 'automatizacion-electronica',
     icon: Cpu,
-    title: 'Tecnología',
-    description: 'Entender cómo funcionan las herramientas que uso, no solo usarlas de forma superficial.',
+    title: 'Automatización y electrónica',
+    description: 'Explorar la relación entre informática, electrónica y automatización: de Arduino a la automatización de espacios y dispositivos.',
   },
   {
-    id: 'soluciones',
+    id: 'impacto-real',
     icon: Lightbulb,
-    title: 'Soluciones prácticas',
-    description: 'Priorizar que las cosas funcionen y resuelvan un problema real por sobre la complejidad innecesaria.',
+    title: 'Proyectos con impacto real',
+    description: 'Priorizar soluciones útiles para organizaciones, empresas y usuarios reales antes que ejercicios de práctica sin destino.',
   },
   {
-    id: 'aprendizaje',
+    id: 'aprendizaje-continuo',
     icon: GraduationCap,
     title: 'Aprendizaje continuo',
-    description: 'Seguir formándome después de la secundaria, en tecnologías nuevas y en las bases que no cambian.',
+    description: 'Aprender de quienes saben más y, a futuro, animarme a desarrollar proyectos propios o sumarme a un emprendimiento.',
   },
 ]

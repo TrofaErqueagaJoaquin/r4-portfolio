@@ -54,6 +54,13 @@
   color: var(--color-text);
 }
 
+.nickname {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--color-text-faint);
+  vertical-align: middle;
+}
+
 .role {
   font-size: 1.15rem;
   font-weight: 600;

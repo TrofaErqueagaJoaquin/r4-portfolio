@@ -89,7 +89,9 @@ create table if not exists skills (
   level       smallint not null,
   created_at  timestamptz not null default now(),
   constraint skills_level_range check (level between 1 and 5),
-  constraint skills_category_valid check (category in ('tecnologias', 'herramientas', 'blandas'))
+  constraint skills_category_valid check (
+    category in ('desarrollo-web', 'bases-de-datos', 'redes', 'electronica', 'mantenimiento', 'herramientas', 'blandas')
+  )
 );
 
 create index if not exists idx_skills_category on skills (category);
