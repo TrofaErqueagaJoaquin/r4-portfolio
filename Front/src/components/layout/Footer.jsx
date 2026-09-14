@@ -46,7 +46,7 @@ export function Footer() {
       </div>
 
       <p className={styles.copyright}>
-        © {year} {profile.name}. Proyecto escolar R4 — contenido provisorio.
+        © {year} {profile.name}. Proyecto escolar R4.
       </p>
     </footer>
   )

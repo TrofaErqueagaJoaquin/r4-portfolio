@@ -278,10 +278,15 @@ En el proyecto del backend, agregar la URL final del frontend a
   bundler experimental (Rolldown) cuyo binding nativo para Windows no
   se resolvía en este entorno; se fijó la versión 6 (estable). Ver
   [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
-- `@supabase/supabase-js` pide Node ≥ 22 en su `package.json`, pero en
-  la práctica funciona correctamente con Node 20.14 para las
-  operaciones que usa este proyecto (se probó localmente). Se
-  recomienda Node 22+ si está disponible.
+- `@supabase/supabase-js` pide Node ≥ 22. En Node 20 el proceso llega a
+  **romper al arrancar** (`createClient()` inicializa su cliente de
+  Realtime, que exige WebSocket nativo, disponible recién desde Node
+  22) — no se veía en desarrollo porque solo ocurre con credenciales de
+  Supabase reales cargadas. Se solucionó sin necesitar Node 22:
+  `supabaseClient.js` le pasa la librería `ws` como implementación de
+  WebSocket (`realtime: { transport: WebSocket }`), algo seguro porque
+  este proyecto no usa Supabase Realtime (no hay suscripciones en
+  vivo). Igualmente se recomienda Node 22+ si está disponible.
 - El envío de email del formulario de contacto no está activo hasta
   configurar `RESEND_API_KEY` y `CONTACT_TO_EMAIL` (el guardado en la
   base funciona igual sin esas variables).

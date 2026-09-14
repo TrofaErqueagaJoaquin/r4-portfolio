@@ -34,7 +34,7 @@ export function ProjectsSection() {
         <SectionHeading
           eyebrow="Lo que fui construyendo"
           title="Proyectos"
-          description="Proyectos de ejemplo con datos provisorios. Se van a reemplazar por proyectos reales a medida que estén listos."
+          description="Se van sumando a medida que estén listos para mostrarse."
         />
 
         {status === 'loading' && <Spinner label="Cargando proyectos…" />}

@@ -16,7 +16,7 @@ export function Experience() {
         <SectionHeading
           eyebrow="Recorrido"
           title="Experiencia"
-          description="Formación y proyectos relevantes hasta ahora. Se irá completando con experiencia real."
+          description="Formación técnica y experiencia laboral hasta ahora."
         />
 
         {status === 'loading' && <Spinner label="Cargando experiencia…" />}
