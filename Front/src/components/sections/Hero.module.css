@@ -107,6 +107,13 @@
   background: var(--color-bg);
 }
 
+.avatarImage {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .avatarInitials {
   position: relative;
   font-family: var(--font-mono);

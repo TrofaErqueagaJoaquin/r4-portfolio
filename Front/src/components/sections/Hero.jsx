@@ -64,9 +64,15 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
         >
-          <div className={styles.avatar} role="img" aria-label={`Foto de perfil provisoria de ${profile.name}`}>
-            <span className={styles.avatarInitials}>{getInitials(profile.name)}</span>
-          </div>
+          {profile.photo ? (
+            <div className={styles.avatar}>
+              <img src={profile.photo} alt={`Foto de perfil de ${profile.name}`} className={styles.avatarImage} />
+            </div>
+          ) : (
+            <div className={styles.avatar} role="img" aria-label={`Foto de perfil provisoria de ${profile.name}`}>
+              <span className={styles.avatarInitials}>{getInitials(profile.name)}</span>
+            </div>
+          )}
           <div className={styles.badgeFloating}>
             <span className={styles.badgeDot} aria-hidden="true" />
             Disponible para aprender y sumar

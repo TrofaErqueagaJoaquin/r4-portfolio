@@ -3,6 +3,9 @@
 export const profile = {
   name: 'Joaquín Erqueaga',
   nickname: 'Joaco',
+  // Foto real en Front/public/profile.jpg. Si se deja vacío ('' o null),
+  // el Hero vuelve a mostrar automáticamente el avatar con iniciales.
+  photo: '/profile.jpg',
   role: 'Estudiante de Técnico en Informática · Desarrollo web y soluciones tecnológicas',
   tagline:
     'Estoy terminando mi formación técnica en informática y me interesa crear soluciones prácticas que combinen tecnología, automatización y resolución de problemas reales.',
