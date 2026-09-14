@@ -4,8 +4,8 @@ import { ScrollReveal } from '../common/ScrollReveal.jsx'
 import { Spinner } from '../common/Spinner.jsx'
 import { ErrorMessage } from '../common/ErrorMessage.jsx'
 import { EmptyState } from '../common/EmptyState.jsx'
+import { Badge } from '../common/Badge.jsx'
 import { useSkills } from '../../hooks/useSkills.js'
-import { SkillCard } from './SkillCard.jsx'
 import styles from './Skills.module.css'
 
 // Las categorías se guardan en la base como slugs estables (sin acentos)
@@ -61,14 +61,14 @@ export function Skills() {
             {groups.map(([category, items], index) => {
               const { label, icon: CategoryIcon } = CATEGORY_META[category] || { label: category, icon: Code2 }
               return (
-                <ScrollReveal key={category} delay={index * 0.08} className={styles.group}>
+                <ScrollReveal key={category} delay={index * 0.06} className={styles.group}>
                   <h3 className={styles.groupTitle}>
                     <CategoryIcon size={18} aria-hidden="true" />
                     {label}
                   </h3>
-                  <div className={styles.cards}>
+                  <div className={styles.chips}>
                     {items.map((skill) => (
-                      <SkillCard key={skill.id} skill={skill} />
+                      <Badge key={skill.id}>{skill.name}</Badge>
                     ))}
                   </div>
                 </ScrollReveal>
