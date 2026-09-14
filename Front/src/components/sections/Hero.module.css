@@ -85,9 +85,12 @@
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-self: center;
 }
 
 .avatar {
+  flex-shrink: 0;
   width: min(300px, 70vw);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -108,8 +111,15 @@
 }
 
 .avatarImage {
+  /* En un elemento con reemplazo (<img>) el inset por sí solo no alcanza:
+     el navegador prioriza la proporción original de la imagen y calcula
+     el alto a partir de ella, ignorando la restricción inferior — hace
+     falta fijar width/height explícitos para forzarlo a un cuadrado. */
   position: absolute;
-  inset: 6px;
+  top: 6px;
+  left: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
   border-radius: 50%;
   object-fit: cover;
 }
