@@ -8,8 +8,8 @@
 -- Fechas de experiencia confirmadas por Joaquín (2026-09-14). Solo el
 -- día exacto dentro del mes queda como aproximación razonable en los
 -- casos donde no se precisó — no afecta al resto del sitio.
--- Pendiente (no bloquea nada): nombre exacto de la especialidad técnica
--- (termina en ~1 mes y medio desde la fecha de esta carga).
+-- Título exacto confirmado con el CV: "Técnico en Informática Profesional y Personal"
+-- (último año en curso al 2026-10-19).
 -- ============================================================
 
 insert into technologies (name, slug) values
@@ -80,24 +80,24 @@ insert into skills (name, category, level) values
 -- ------------------------------------------------------------
 insert into experiences (title, organization, description, start_date, end_date, type) values
   (
-    'Estudiante de Técnico en Informática',
-    'Escuela Técnica N°5 "Amancio Williams" (Mar del Plata)',
-    'Formación técnica en informática: programación y desarrollo web, bases de datos relacionales, redes (armado de cables RJ45, conexión de dispositivos), mantenimiento de PC y electrónica con Arduino. Participación en competencias provinciales de robótica.',
+    'Técnico en Informática Profesional y Personal',
+    'Escuela de Educación Secundaria Técnica N°5 "Amancio Williams" (Mar del Plata)',
+    'Último año en curso. Formación técnica en informática: programación y desarrollo web, bases de datos relacionales, redes (armado de cables RJ45, conexión de dispositivos), mantenimiento de PC, electricidad y electrónica con Arduino. Participación en competencias provinciales de robótica.',
     '2020-03-01', -- confirmado (marzo, inicio de ciclo lectivo)
     null,
     'educacion'
   ),
   (
-    'Construcción, reformas y mantenimiento',
-    'Junto a mi papá',
-    'Participación en reformas completas y trabajos de mantenimiento: plomería, gas y reparación de calefones. Tareas prácticas de construcción, colaborando en la organización del trabajo y resolviendo problemas concretos durante las obras.',
+    'Ayudante en mantenimiento general',
+    'Trabajo independiente junto a mi papá',
+    'Temporadas de verano e invierno. Participación directa en instalaciones y reparaciones eléctricas, plomería y gas (arreglo de cañerías, detección de pérdidas, termofusión), colocación y mantenimiento de sanitarios, y albañilería (revoque, reparación y terminaciones). Manejo de multímetro, taladro, martillo percutor y otras herramientas, respetando normas de seguridad e higiene.',
     '2021-01-01', -- confirmado: arranca en 2021 (mes exacto no provisto, trabajo informal y periódico)
     null,
     'trabajo'
   ),
   (
     'Venta al público en foodtruck',
-    'Foodtruck de productos dulces',
+    'Cubanitos La Vasquita (foodtruck)',
     'Atención directa a clientes, manejo de caja, cobros y cálculos rápidos en un entorno de trabajo dinámico, durante varias temporadas de verano.',
     '2023-12-01', -- confirmado: temporada de verano 2023-24 (día exacto no provisto)
     '2026-02-28', -- confirmado: última temporada, verano 2025-26 (día exacto no provisto)
