@@ -71,7 +71,8 @@ R4/
     vercel.json                Config de despliegue (SPA fallback)
 
   Back/                      API (Node.js + Express)
-    api/[...path].js           Punto de entrada serverless para Vercel
+    api/index.js               Punto de entrada serverless para Vercel
+    vercel.json                Reenvía todas las rutas /api/... a esa función
     src/
       app.js / server.js       App de Express / arranque en local
       config/                  Variables de entorno y cliente de Supabase
@@ -240,7 +241,7 @@ un service y un controller **genéricos** (`crud.service.js`,
 `crud.controller.js`); proyectos tiene los suyos porque además sincroniza
 la tabla puente con tecnologías. `Back/src/app.js` exporta la app ya armada; la usan
 tanto `server.js` (para correr local con `node`/`nodemon`) como
-`api/[...path].js` (para desplegarla como función serverless en
+`api/index.js` (para desplegarla como función serverless en
 Vercel), sin duplicar código. Detalle de esta decisión en
 [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
 
@@ -276,7 +277,7 @@ repositorio (Root Directory distinto en cada uno):
 1. Importar el repo en Vercel con esa Root Directory.
 2. Cargar las variables de entorno de `Back/.env.example` en
    Project Settings > Environment Variables.
-3. Deploy. Vercel detecta `api/[...path].js` automáticamente y expone
+3. Deploy. `Back/vercel.json` manda todas las rutas `/api/...` a `api/index.js` y queda expuesta
    `https://<tu-backend>.vercel.app/api/...`.
 
 **Frontend** (`Root Directory: R4/Front`):

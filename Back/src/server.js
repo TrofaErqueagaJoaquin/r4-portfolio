@@ -2,7 +2,7 @@ import { app } from './app.js'
 import { env } from './config/env.js'
 
 // Entrada SOLO para desarrollo local (`npm run dev` / `npm start`). En
-// Vercel no se usa: la función serverless en api/[...path].js importa
+// Vercel no se usa: la función serverless en api/index.js importa
 // `app` directamente y Vercel se encarga de escuchar peticiones.
 app.listen(env.port, () => {
   console.log(`API escuchando en http://localhost:${env.port}`)

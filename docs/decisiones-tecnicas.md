@@ -81,7 +81,7 @@ Vercel, se construyó una app de Express normal (`Back/src/app.js`) que:
 
 - Se ejecuta con `node src/server.js` en desarrollo local (como
   cualquier servidor Express).
-- Se reexporta tal cual desde `Back/api/[...path].js` para Vercel, que
+- Se reexporta tal cual desde `Back/api/index.js` para Vercel, que
   la puede invocar directamente como función serverless porque una app
   de Express ya tiene la firma `(req, res)` que Vercel espera.
 
@@ -89,6 +89,17 @@ Esto evita mantener dos versiones de la misma lógica y cumple con la
 consigna ("Node.js + Express" y, a la vez, "una arquitectura de
 funciones de servidor, según convenga" — la consigna deja esta
 combinación abierta explícitamente).
+
+## Una sola función de Vercel para toda la API (`vercel.json`)
+
+Al principio la API se exponía con un archivo `api/[...path].js`,
+pensando que esa convención atrapaba cualquier ruta. En la práctica
+Vercel solo le mandaba rutas de **un** nivel (`/api/skills`), y las de
+dos o más (`/api/auth/login`, `/api/skills/7`) devolvían 404: el login y
+las ediciones/bajas fallaban en producción aunque en local andaban. Se
+reemplazó por `api/index.js` más un `vercel.json` que reenvía
+explícitamente `/api/(.*)` a esa función, que es la configuración
+estándar para Express en Vercel.
 
 ## Frontend y Supabase nunca se hablan directo
 
