@@ -16,9 +16,13 @@ import { env } from './env.js'
  * no existe el WebSocket nativo global. Pasarle la implementación de la
  * librería `ws` evita ese chequeo sin necesitar Node 22.
  */
-export const supabase = env.isSupabaseConfigured
-  ? createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
-      realtime: { transport: WebSocket },
-    })
-  : null
+export function createSupabaseClient() {
+  return createClient(env.supabaseUrl, env.supabaseServiceRoleKey, {
+    auth: { autoRefreshToken: false, persistSession: false },
+    realtime: { transport: WebSocket },
+  })
+}
+
+// Conexión compartida para leer y escribir datos. Nunca se inicia sesión
+// en ella (ver services/auth.service.js), así siempre actúa como backend.
+export const supabase = env.isSupabaseConfigured ? createSupabaseClient() : null
