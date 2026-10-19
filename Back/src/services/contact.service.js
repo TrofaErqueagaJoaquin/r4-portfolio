@@ -11,12 +11,16 @@ export const contactService = {
 
     if (error) throw error
 
-    // El guardado en la base ya garantizó la persistencia del mensaje.
-    // El email es un aviso adicional: si falla, no debe romper la
-    // respuesta que ya le vamos a dar a quien completó el formulario.
-    sendContactNotification(data).catch((err) => {
+    // Se ESPERA al envío del mail antes de responder: en Vercel la función
+    // se congela apenas se envía la respuesta, así que una promesa "suelta"
+    // nunca llegaba a mandar el mail (bug real: ningún aviso se había
+    // enviado). Igual se atrapa el error: si el mail falla, el mensaje ya
+    // quedó guardado y el formulario no debe mostrar error por eso.
+    try {
+      await sendContactNotification(data)
+    } catch (err) {
       console.error('No se pudo enviar el email de notificación de contacto:', err.message)
-    })
+    }
 
     return data
   },

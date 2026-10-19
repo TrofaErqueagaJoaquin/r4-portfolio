@@ -1,27 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { experiencesService } from '../services/experiencesService.js'
+import { apiClient } from '../lib/apiClient.js'
+import { useResourceList } from './useResourceList.js'
+
+const loadExperiences = () => apiClient.get('/api/experiences')
 
 export function useExperiences() {
-  const [experiences, setExperiences] = useState([])
-  const [status, setStatus] = useState('loading')
-  const [error, setError] = useState('')
-
-  const load = useCallback(async () => {
-    setStatus('loading')
-    setError('')
-    try {
-      const data = await experiencesService.getAll()
-      setExperiences(data)
-      setStatus('success')
-    } catch (err) {
-      setError(err.message || 'No se pudo cargar la experiencia.')
-      setStatus('error')
-    }
-  }, [])
-
-  useEffect(() => {
-    load()
-  }, [load])
-
-  return { experiences, status, error, reload: load }
+  const { items, status, errorMessage, reload } = useResourceList(loadExperiences, 'No se pudo cargar la experiencia.')
+  return { experiences: items, status, error: errorMessage, reload }
 }

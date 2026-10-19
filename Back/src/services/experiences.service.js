@@ -1,13 +1,3 @@
-import { supabase } from '../config/supabaseClient.js'
+import { createCrudService } from './crud.service.js'
 
-export const experiencesService = {
-  async list() {
-    const { data, error } = await supabase
-      .from('experiences')
-      .select('*')
-      .order('start_date', { ascending: false })
-
-    if (error) throw error
-    return data
-  },
-}
+export const experiencesService = createCrudService({ table: 'experiences', order: [['start_date', false]] })

@@ -1,27 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { skillsService } from '../services/skillsService.js'
+import { apiClient } from '../lib/apiClient.js'
+import { useResourceList } from './useResourceList.js'
+
+const loadSkills = () => apiClient.get('/api/skills')
 
 export function useSkills() {
-  const [skills, setSkills] = useState([])
-  const [status, setStatus] = useState('loading')
-  const [error, setError] = useState('')
-
-  const load = useCallback(async () => {
-    setStatus('loading')
-    setError('')
-    try {
-      const data = await skillsService.getAll()
-      setSkills(data)
-      setStatus('success')
-    } catch (err) {
-      setError(err.message || 'No se pudieron cargar las habilidades.')
-      setStatus('error')
-    }
-  }, [])
-
-  useEffect(() => {
-    load()
-  }, [load])
-
-  return { skills, status, error, reload: load }
+  const { items, status, errorMessage, reload } = useResourceList(loadSkills, 'No se pudieron cargar las habilidades.')
+  return { skills: items, status, error: errorMessage, reload }
 }

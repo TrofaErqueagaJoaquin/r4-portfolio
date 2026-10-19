@@ -1,14 +1,5 @@
 import { projectsService } from '../services/projects.service.js'
 import { validateProjectPayload } from '../validators/project.validator.js'
-import { env } from '../config/env.js'
-
-function ensureSupabaseConfigured(res) {
-  if (!env.isSupabaseConfigured) {
-    res.status(503).json({ message: 'Supabase no está configurado en el servidor (ver .env.example).' })
-    return false
-  }
-  return true
-}
 
 function isValidId(id) {
   return /^\d+$/.test(id)
@@ -16,7 +7,6 @@ function isValidId(id) {
 
 export const projectsController = {
   async list(req, res) {
-    if (!ensureSupabaseConfigured(res)) return
     try {
       const projects = await projectsService.list()
       res.json(projects)
@@ -26,8 +16,6 @@ export const projectsController = {
   },
 
   async create(req, res) {
-    if (!ensureSupabaseConfigured(res)) return
-
     const errors = validateProjectPayload(req.body)
     if (Object.keys(errors).length > 0) {
       return res.status(400).json({ message: 'Revisá los datos del proyecto.', errors })
@@ -42,7 +30,6 @@ export const projectsController = {
   },
 
   async update(req, res) {
-    if (!ensureSupabaseConfigured(res)) return
     if (!isValidId(req.params.id)) return res.status(400).json({ message: 'ID de proyecto inválido.' })
 
     const errors = validateProjectPayload(req.body)
@@ -59,7 +46,6 @@ export const projectsController = {
   },
 
   async remove(req, res) {
-    if (!ensureSupabaseConfigured(res)) return
     if (!isValidId(req.params.id)) return res.status(400).json({ message: 'ID de proyecto inválido.' })
 
     try {

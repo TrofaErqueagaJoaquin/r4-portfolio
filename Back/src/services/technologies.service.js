@@ -1,9 +1,3 @@
-import { supabase } from '../config/supabaseClient.js'
+import { createCrudService } from './crud.service.js'
 
-export const technologiesService = {
-  async list() {
-    const { data, error } = await supabase.from('technologies').select('*').order('name', { ascending: true })
-    if (error) throw error
-    return data
-  },
-}
+export const technologiesService = createCrudService({ table: 'technologies', order: [['name', true]] })

@@ -1,14 +1,5 @@
-import { supabase } from '../config/supabaseClient.js'
+import { createCrudService } from './crud.service.js'
 
-export const skillsService = {
-  async list() {
-    const { data, error } = await supabase
-      .from('skills')
-      .select('*')
-      .order('category', { ascending: true })
-      .order('level', { ascending: false })
-
-    if (error) throw error
-    return data
-  },
-}
+// Dentro de cada categoría, de más a menos desarrollada (el nivel no se
+// muestra en la web, pero sí define el orden).
+export const skillsService = createCrudService({ table: 'skills', order: [['category', true], ['level', false], ['name', true]] })

@@ -20,7 +20,8 @@ app.use(
     },
   }),
 )
-app.use(express.json())
+// 5 MB: alcanza para una imagen de hasta 3 MB codificada en base64 (POST /api/uploads).
+app.use(express.json({ limit: '5mb' }))
 
 app.get('/', (req, res) => {
   res.json({ name: 'R4 Portfolio API', status: 'ok' })

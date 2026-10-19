@@ -4,18 +4,6 @@
   gap: var(--space-4);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-@media (min-width: 640px) {
-  .row {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 .field {
   display: flex;
   flex-direction: column;
@@ -36,6 +24,14 @@
   color: var(--color-text);
 }
 
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
 .fieldset {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -45,13 +41,13 @@
   gap: var(--space-3);
 }
 
-.techGrid {
+.checkGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: var(--space-2);
 }
 
-.techOption {
+.checkOption {
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -59,24 +55,59 @@
   color: var(--color-text-muted);
 }
 
-.techLoading {
+.muted {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
 }
 
 .spinIcon {
   animation: spin 0.8s linear infinite;
 }
 
-.checkboxRow {
+.imageField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.imageActions {
   display: flex;
   align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
   gap: var(--space-2);
-  font-size: 0.9rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border-strong);
   color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.uploadButton:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.uploadButton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.preview {
+  width: 96px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
 }
 
 .actions {

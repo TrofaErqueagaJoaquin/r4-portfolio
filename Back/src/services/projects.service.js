@@ -1,12 +1,6 @@
 import { supabase } from '../config/supabaseClient.js'
 import { slugify } from '../utils/slugify.js'
-
-export class ServiceError extends Error {
-  constructor(message, status) {
-    super(message)
-    this.status = status
-  }
-}
+import { ServiceError } from '../utils/ServiceError.js'
 
 // select anidado: PostgREST resuelve la relación proyectos ->
 // project_technologies -> technologies en una sola consulta gracias a

@@ -159,3 +159,14 @@ create policy "Lectura publica de experiencia"          on experiences          
 -- anon/authenticated: los mensajes son privados (contienen datos
 -- personales de quien escribe) y solo el backend, con la Service Role
 -- Key, puede insertarlos o leerlos.
+
+-- ============================================================
+-- Storage: bucket público para imágenes de proyectos
+-- ============================================================
+-- Las imágenes que se suben desde el panel /admin van a este bucket
+-- (vía backend, con la Service Role Key) y en `projects.image_url` se
+-- guarda su URL pública. Público = cualquiera puede VERLAS (las muestra
+-- la landing); subir/borrar solo lo hace el backend tras validar la sesión.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('imagenes', 'imagenes', true, 3145728, array['image/jpeg', 'image/png', 'image/webp', 'image/gif'])
+on conflict (id) do nothing;

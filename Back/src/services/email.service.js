@@ -20,7 +20,10 @@ export async function sendContactNotification(message) {
     return
   }
 
-  await resend.emails.send({
+  // El SDK de Resend no lanza excepción si la API rechaza el envío: lo
+  // devuelve en `error`. Se convierte en excepción para que no falle en
+  // silencio y quede registrado en los logs.
+  const { error } = await resend.emails.send({
     from: env.contactFromEmail,
     to: env.contactToEmail,
     subject: `Nuevo mensaje de contacto de ${message.name}`,
@@ -31,4 +34,5 @@ export async function sendContactNotification(message) {
       <p>${escapeHtml(message.message).replace(/\n/g, '<br />')}</p>
     `,
   })
+  if (error) throw new Error(error.message)
 }

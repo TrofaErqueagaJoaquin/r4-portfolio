@@ -34,3 +34,8 @@
   font-size: 0.82rem;
   color: var(--color-error);
 }
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}

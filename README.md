@@ -2,13 +2,13 @@
 
 Portfolio de una sola página (landing) para un estudiante de secundaria
 técnica en informática: presentación personal, habilidades, experiencia,
-proyectos (con CRUD real contra base de datos), objetivos y contacto.
+proyectos (con ABML real contra base de datos), objetivos y contacto.
 Pensado para una entrega escolar y para seguir usándose después como
 página personal real.
 
-> **Contenido provisorio**: los datos de "Nombre Apellido", la bio, los
-> proyectos de ejemplo, etc. son placeholders explícitamente marcados
-> como tales. Ver [¿Qué falta completar?](#qué-falta-completar-datos-reales).
+> **En línea**: https://portfolio-one-swart-54.vercel.app (panel en
+> `/admin`). Para cambiar contenido, ver
+> [¿Cómo actualizo el contenido?](#cómo-actualizo-el-contenido).
 
 ## Índice
 
@@ -22,14 +22,14 @@ página personal real.
 - [Hooks utilizados](#hooks-utilizados)
 - [Eventos implementados](#eventos-implementados)
 - [Animaciones](#animaciones)
-- [CRUD de proyectos](#crud-de-proyectos)
+- [Panel de administración (ABML)](#panel-de-administración-abml)
 - [Arquitectura del backend](#arquitectura-del-backend)
 - [Base de datos y normalización](#base-de-datos-y-normalización)
 - [Seguridad](#seguridad)
 - [Despliegue en Vercel](#despliegue-en-vercel)
 - [Problemas conocidos](#problemas-conocidos)
 - [Próximos pasos](#próximos-pasos)
-- [¿Qué falta completar? (datos reales)](#qué-falta-completar-datos-reales)
+- [¿Cómo actualizo el contenido?](#cómo-actualizo-el-contenido)
 
 ## Tecnologías
 
@@ -62,11 +62,11 @@ R4/
         projects/              Tarjeta, filtro, modal y sección de Proyectos
         contact/               Formulario de contacto y sus piezas
       pages/                  HomePage, NotFoundPage, páginas de /admin
-      hooks/                  useTheme, useProjects, useContactForm, useAuth, etc.
-      services/               Llamadas HTTP al backend (una por recurso)
+      hooks/                  useTheme, useResourceList, useContactForm, useAuth, etc.
+      services/               Llamadas HTTP al backend (contacto, login, panel admin)
       context/                AuthContext / AuthProvider (sesión admin)
       lib/                    apiClient, validadores, constantes, formateo de fechas
-      data/                   Datos provisorios (perfil, objetivos)
+      data/                   Perfil y objetivos (se editan por código)
       styles/                 Reset, variables de tema, estilos globales, animaciones CSS
     vercel.json                Config de despliegue (SPA fallback)
 
@@ -78,18 +78,19 @@ R4/
       controllers/             Reciben la petición HTTP y arman la respuesta
       services/                Lógica de negocio + consultas a Supabase
       routes/                  Definición de endpoints por recurso
-      middleware/               requireAuth, 404, manejo de errores
-      validators/               Validación de payloads (proyectos, contacto)
-      utils/                    slugify
+      middleware/               requireAuth, requireSupabase, 404, manejo de errores
+      validators/               Validación de cada recurso (proyectos, habilidades, etc.)
+      utils/                    slugify, ServiceError
 
   database/
     schema.sql                 Creación de tablas, restricciones, índices, RLS
-    seed.sql                   Datos de ejemplo provisorios
+    seed.sql                   Carga inicial de datos reales
     README.md                  Paso a paso para configurar Supabase
 
   docs/
     base-de-datos.md           Diagrama ER, relaciones, normalización, seguridad
-    defensa-oral.md            Explicaciones simples para la defensa
+    defensa-oral.md            Explicaciones simples, guion de demo y preguntas probables
+    guia-administracion.md     Qué se modifica y desde dónde (panel vs. código)
     decisiones-tecnicas.md     Decisiones tomadas ante puntos ambiguos de la consigna
 ```
 
@@ -177,8 +178,10 @@ copiar las credenciales, y crear a mano el único usuario administrador
 - **`ContactForm`** (`Front/src/components/contact/`): formulario
   controlado con validación y estados de envío.
 - **Panel admin** (`Front/src/pages/admin/`): `AdminLoginPage`,
-  `AdminDashboardPage`, `ProjectsTable`, `ProjectForm` (alta/edición) y
-  `ConfirmDialog` (confirmación de borrado).
+  `AdminDashboardPage` (pestañas), `ResourceManager` (listado + alta,
+  modificación y baja genéricos), `ResourceForm` (formulario armado a
+  partir de una lista de campos), `adminResources.jsx` (la configuración
+  de cada tabla), `MessagesPanel` (bandeja de contacto) y `ConfirmDialog`.
 
 ## Hooks utilizados
 
@@ -187,7 +190,7 @@ Ver la tabla completa con el "para qué" de cada uno en
 `useState` y `useEffect` de React se usan en prácticamente todos los
 componentes con estado o con datos remotos; `useRef` se usa para
 guardar el id de un `setTimeout` sin disparar renders
-(`AdminDashboardPage.jsx`) y para mover el foco en los diálogos
+(`useTimedMessage.js`), para abrir el selector de archivos (`ImageField.jsx`) y para mover el foco en los diálogos
 accesibles (`ProjectModal`, `ConfirmDialog`); el resto son hooks propios
 con una responsabilidad puntual cada uno (tema, formulario de contacto,
 fetching de cada recurso, sesión de admin).
@@ -196,8 +199,8 @@ fetching de cada recurso, sesión de admin).
 
 Click (navegación, cambio de tema, abrir/cerrar modal, filtrar
 proyectos, editar/eliminar en el panel admin), submit (contacto,
-login, alta/edición de proyecto), change (todos los inputs
-controlados) y teclado (Escape cierra el menú móvil y los diálogos,
+login, alta/edición en el panel), change (todos los inputs
+controlados y la elección de un archivo para subir) y teclado (Escape cierra el menú móvil y los diálogos,
 foco visible en toda la app para navegar sin mouse).
 
 ## Animaciones
@@ -208,20 +211,34 @@ proyecto y del diálogo de confirmación, transición del ícono de
 tema, y salida animada de las tarjetas al filtrar proyectos. Detalle
 completo en [`docs/defensa-oral.md`](docs/defensa-oral.md#qué-animaciones-se-usaron).
 
-## CRUD de proyectos
+## Panel de administración (ABML)
 
-Completo y persistido en Supabase (no hay datos simulados en arrays
-locales). Rutas del backend: `GET/POST /api/projects` y
-`PUT/DELETE /api/projects/:id`. Las tres últimas requieren sesión de
-administrador. Ver [`docs/defensa-oral.md`](docs/defensa-oral.md#qué-es-un-crud)
-para el detalle de qué dispara cada operación en la interfaz.
+En `/admin` (con login) hay **Alta, Baja, Modificación y Listado** de
+proyectos, habilidades, experiencia y tecnologías, más una bandeja de
+mensajes de contacto (marcar leído/archivado, eliminar) y **subida de
+imágenes** de proyectos a Supabase Storage. Todo persiste en Supabase.
 
+| Recurso | Rutas | Acceso |
+|---|---|---|
+| Proyectos | `GET/POST /api/projects`, `PUT/DELETE /api/projects/:id` | `GET` público, el resto admin |
+| Habilidades | `GET/POST /api/skills`, `PUT/DELETE /api/skills/:id` | ídem |
+| Experiencia | `GET/POST /api/experiences`, `PUT/DELETE /api/experiences/:id` | ídem |
+| Tecnologías | `GET/POST /api/technologies`, `PUT/DELETE /api/technologies/:id` | ídem |
+| Mensajes | `GET /api/messages`, `PATCH/DELETE /api/messages/:id` | Solo admin |
+| Contacto | `POST /api/contact` | Público (guarda + manda mail) |
+| Imágenes | `POST /api/uploads` | Solo admin |
+
+Paso a paso de qué se cambia desde el panel y qué desde el código:
+[`docs/guia-administracion.md`](docs/guia-administracion.md).
 ## Arquitectura del backend
 
 Express organizado por capas: `routes` (qué URL existe) →
 `controllers` (validan la entrada y arman la respuesta HTTP) →
 `services` (hablan con Supabase) — sin lógica de negocio mezclada con
-el manejo de HTTP. `Back/src/app.js` exporta la app ya armada; la usan
+el manejo de HTTP. Habilidades, experiencia, tecnologías y mensajes usan
+un service y un controller **genéricos** (`crud.service.js`,
+`crud.controller.js`); proyectos tiene los suyos porque además sincroniza
+la tabla puente con tecnologías. `Back/src/app.js` exporta la app ya armada; la usan
 tanto `server.js` (para correr local con `node`/`nodemon`) como
 `api/[...path].js` (para desplegarla como función serverless en
 Vercel), sin duplicar código. Detalle de esta decisión en
@@ -293,26 +310,14 @@ En el proyecto del backend, agregar la URL final del frontend a
 
 ## Próximos pasos
 
-- Cargar datos reales (ver la sección siguiente).
-- Agregar administración de habilidades y experiencia desde `/admin`
-  (hoy solo se cargan por SQL).
-- Subida de imágenes a Supabase Storage en vez de pegar una URL a mano.
+- Editar desde el panel también el perfil (nombre, bio, objetivos), hoy
+  en `Front/src/data/` (ver por qué en `docs/decisiones-tecnicas.md`).
+- Pantalla de "olvidé mi contraseña" para el admin.
 - Tests automatizados (no se pidieron para esta entrega).
 
-## ¿Qué falta completar? (datos reales)
+## ¿Cómo actualizo el contenido?
 
-Antes de usar este proyecto como página personal real:
-
-1. **Datos personales**: completar `Front/src/data/profile.js` (nombre,
-   rol, bio, email, redes).
-2. **Objetivos**: revisar `Front/src/data/goals.js` si querés cambiar
-   el enfoque.
-3. **Foto de perfil**: reemplazar el avatar de iniciales en `Hero.jsx`
-   por una imagen real cuando esté disponible.
-4. **Habilidades y experiencia**: editar directamente en la tabla
-   `skills`/`experiences` desde el SQL Editor de Supabase (o volver a
-   correr un `INSERT` con tus datos).
-5. **Proyectos reales**: borrar los de ejemplo y cargar los reales
-   desde `/admin` (con sus links de repositorio/demo reales).
-6. **Variables de entorno de producción**: `RESEND_API_KEY` y
-   `CONTACT_TO_EMAIL` si se quiere recibir el aviso por email.
+Ver [`docs/guia-administracion.md`](docs/guia-administracion.md): tabla de
+qué se cambia desde el panel `/admin` (proyectos, habilidades,
+experiencia, tecnologías, mensajes) y qué desde el código (perfil, foto,
+objetivos), con el paso a paso de cada uno.

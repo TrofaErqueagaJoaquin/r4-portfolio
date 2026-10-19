@@ -6,19 +6,25 @@ import { ErrorMessage } from '../common/ErrorMessage.jsx'
 import { EmptyState } from '../common/EmptyState.jsx'
 import { Badge } from '../common/Badge.jsx'
 import { useSkills } from '../../hooks/useSkills.js'
+import { SKILL_CATEGORIES } from '../../lib/constants.js'
 import styles from './Skills.module.css'
 
-// Las categorías se guardan en la base como slugs estables (sin acentos)
-// y acá se mapean a la etiqueta + ícono que se muestran en pantalla.
-const CATEGORY_META = {
-  'desarrollo-web': { label: 'Desarrollo web', icon: Code2 },
-  'bases-de-datos': { label: 'Bases de datos', icon: Database },
-  redes: { label: 'Redes informáticas', icon: Network },
-  electronica: { label: 'Electrónica y robótica', icon: Cpu },
-  mantenimiento: { label: 'Mantenimiento informático', icon: Wrench },
-  herramientas: { label: 'Herramientas', icon: Terminal },
-  blandas: { label: 'Habilidades personales', icon: Users },
+// Las categorías se guardan en la base como slugs estables (sin acentos);
+// la etiqueta sale de lib/constants.js (la misma que usa el panel admin)
+// y acá solo se le asigna un ícono a cada una.
+const CATEGORY_ICONS = {
+  'desarrollo-web': Code2,
+  'bases-de-datos': Database,
+  redes: Network,
+  electronica: Cpu,
+  mantenimiento: Wrench,
+  herramientas: Terminal,
+  blandas: Users,
 }
+
+const CATEGORY_META = Object.fromEntries(
+  SKILL_CATEGORIES.map(({ value, label }) => [value, { label, icon: CATEGORY_ICONS[value] || Code2 }]),
+)
 
 // Orden de presentación fijo (categorías técnicas primero, en progresión
 // lógica, habilidades personales al final) en vez del orden alfabético

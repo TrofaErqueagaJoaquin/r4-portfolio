@@ -100,15 +100,22 @@ agregar validaciones o lógica futura, y una arquitectura más simple de
 explicar: "React solo le habla a la API propia; la API le habla a
 Supabase".
 
-## CRUD de administración: solo proyectos
+## Panel de administración genérico (ABML de todas las tablas)
 
-La consigna pide explícitamente un CRUD de proyectos. `skills` y
-`experiences` también viven en Supabase y tienen su endpoint de lectura
-pública (`GET /api/skills`, `GET /api/experiences`), pero no tienen
-pantalla de administración en esta primera etapa — se cargan por SQL
-(`database/seed.sql`) o directo desde el SQL Editor de Supabase. Sumar
-una interfaz de administración para esas dos tablas queda anotado como
-próximo paso en el `README.md` principal.
+En la primera etapa solo proyectos tenía pantalla de administración.
+Después se pidió ABML de todo, y en vez de copiar el mismo código para
+cada tabla se armó un panel **configurable**: `ResourceManager` (tabla,
+alta, modificación, baja) y `ResourceForm` (formulario) son genéricos, y
+lo específico de cada tabla (columnas, campos, cómo se arma el payload)
+es un objeto en `Front/src/pages/admin/adminResources.jsx`. En el backend
+pasa lo mismo con `crud.service.js` y `crud.controller.js`. Sumar una
+tabla nueva al panel es agregar un objeto de configuración, no escribir
+otra pantalla.
+
+El **perfil** (nombre, bio, objetivos) sigue en `Front/src/data/`: es un
+solo bloque de texto que casi no cambia, y pasarlo al panel implicaba
+tablas y formularios nuevos para algo que se edita muy de vez en cuando.
+Quedó como próximo paso.
 
 ## Categorías de proyecto: `CHECK` en vez de tabla aparte
 
@@ -126,13 +133,33 @@ al crearlo (`Back/src/utils/slugify.js`) y no se vuelve a calcular si el
 título cambia en una edición. Esto evita que la URL/identificador de un
 proyecto cambie solo porque se corrigió una palabra del título.
 
-## Sin subida de imágenes a Supabase Storage
+## Subida de imágenes: a Supabase Storage, pasando por el backend
 
-`image_url` es un campo de texto (una URL), no un subida de archivo
-binario. Agregar Supabase Storage (bucket, políticas de acceso, subida
-desde el formulario) es una funcionalidad real pero no pedida
-explícitamente por la consigna, y se documentó como próximo paso en vez
-de sumarla "porque se puede".
+Las imágenes de proyectos se suben desde el panel a un bucket público de
+Supabase Storage (`imagenes`) y en `projects.image_url` se guarda su URL.
+El archivo viaja al backend en base64 dentro de un JSON (en vez de
+`multipart/form-data`) para no sumar una librería de subida de archivos:
+el frontend no tiene credenciales de Supabase, así que la subida tiene que
+pasar por el backend, que valida formato (JPG/PNG/WEBP/GIF) y tamaño
+(3 MB, por el límite de ~4.5 MB por pedido de Vercel).
+
+## URL del backend en `Front/.env.production`
+
+La URL pública de la API (`VITE_API_URL`) está versionada en
+`Front/.env.production` en vez de cargarse solo en el dashboard de
+Vercel. No es un secreto (el navegador la ve en cada pedido) y así el
+deploy no depende de acordarse de configurar una variable a mano: eso
+fue justamente lo que dejó el sitio sin datos en el primer deploy. Si se
+define la variable en Vercel, tiene prioridad sobre el archivo.
+
+## El mail de contacto se espera antes de responder
+
+En Vercel la función se congela apenas envía la respuesta: un envío de
+mail "en segundo plano" nunca terminaba (los mensajes se guardaban, pero
+ningún aviso llegaba). Ahora `contact.service.js` hace `await` del envío
+—con su propio try/catch, para que un fallo del mail no le muestre error
+a quien escribió— y `email.service.js` convierte en excepción el error que
+el SDK de Resend devuelve sin lanzar.
 
 ## Regla de ESLint desactivada a propósito
 

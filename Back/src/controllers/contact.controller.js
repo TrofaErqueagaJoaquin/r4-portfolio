@@ -1,16 +1,11 @@
 import { contactService } from '../services/contact.service.js'
 import { validateContactPayload } from '../validators/contact.validator.js'
-import { env } from '../config/env.js'
 
 export const contactController = {
   async create(req, res) {
     const errors = validateContactPayload(req.body)
     if (Object.keys(errors).length > 0) {
       return res.status(400).json({ message: 'Revisá los datos del formulario.', errors })
-    }
-
-    if (!env.isSupabaseConfigured) {
-      return res.status(503).json({ message: 'El servidor todavía no está configurado para guardar mensajes (falta Supabase).' })
     }
 
     try {
