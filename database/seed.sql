@@ -91,7 +91,7 @@ insert into experiences (title, organization, description, start_date, end_date,
     'Ayudante en mantenimiento general',
     'Trabajo independiente junto a mi papá',
     'Temporadas de verano e invierno. Participación directa en instalaciones y reparaciones eléctricas, plomería y gas (arreglo de cañerías, detección de pérdidas, termofusión), colocación y mantenimiento de sanitarios, y albañilería (revoque, reparación y terminaciones). Manejo de multímetro, taladro, martillo percutor y otras herramientas, respetando normas de seguridad e higiene.',
-    '2021-01-01', -- confirmado: arranca en 2021 (mes exacto no provisto, trabajo informal y periódico)
+    '2022-01-01', -- confirmado con el CV: desde 2022 (mes exacto no provisto, por temporadas)
     null,
     'trabajo'
   ),
