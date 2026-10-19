@@ -1,3 +1,4 @@
+// QUÉ HACE: Sección "Contacto": email, ubicación y el formulario.
 import { Mail, MapPin } from 'lucide-react'
 import { SectionHeading } from '../common/SectionHeading.jsx'
 import { ScrollReveal } from '../common/ScrollReveal.jsx'

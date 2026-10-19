@@ -1,3 +1,5 @@
+// QUÉ HACE: Sección "Sobre mí": la bio y los puntos destacados (salen de
+// data/profile.js).
 import { CheckCircle2 } from 'lucide-react'
 import { SectionHeading } from '../common/SectionHeading.jsx'
 import { ScrollReveal } from '../common/ScrollReveal.jsx'

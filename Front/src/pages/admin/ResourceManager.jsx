@@ -1,3 +1,5 @@
+// QUÉ HACE: Una pestaña del panel: tabla con los datos + botones para
+// agregar, editar y borrar.
 import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Pencil, Plus, Trash2 } from 'lucide-react'

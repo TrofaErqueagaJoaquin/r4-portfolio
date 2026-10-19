@@ -1,3 +1,5 @@
+// QUÉ HACE: Recibe el pedido de inicio de sesión del panel: revisa que
+// vengan email y contraseña y le pide a Supabase que los verifique.
 import { authService } from '../services/auth.service.js'
 
 export const authController = {

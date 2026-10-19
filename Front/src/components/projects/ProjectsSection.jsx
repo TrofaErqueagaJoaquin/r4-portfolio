@@ -1,3 +1,5 @@
+// QUÉ HACE: Sección "Proyectos": trae los proyectos, los filtra y abre el
+// detalle al hacer clic.
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { FolderKanban } from 'lucide-react'

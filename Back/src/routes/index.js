@@ -1,3 +1,5 @@
+// QUÉ HACE: Junta todas las direcciones de la API bajo /api (ej.
+// /api/projects, /api/skills, /api/auth).
 import { Router } from 'express'
 import { requireSupabase } from '../middleware/requireSupabase.js'
 import { projectsRouter } from './projects.routes.js'

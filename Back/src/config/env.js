@@ -1,3 +1,5 @@
+// QUÉ HACE: Lee las claves y configuraciones del archivo .env y las deja
+// en un solo objeto (`env`) para usar en todo el backend.
 import 'dotenv/config'
 
 const missing = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY'].filter((key) => !process.env[key])

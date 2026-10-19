@@ -6,6 +6,9 @@ proyectos (con ABML real contra base de datos), objetivos y contacto.
 Pensado para una entrega escolar y para seguir usándose después como
 página personal real.
 
+> **¿Primera vez mirando el código?** Empezá por
+> [`docs/como-funciona-el-codigo.md`](docs/como-funciona-el-codigo.md).
+>
 > **En línea**: https://portfolio-one-swart-54.vercel.app (panel en
 > `/admin`). Para cambiar contenido, ver
 > [¿Cómo actualizo el contenido?](#cómo-actualizo-el-contenido).
@@ -89,6 +92,7 @@ R4/
     README.md                  Paso a paso para configurar Supabase
 
   docs/
+    como-funciona-el-codigo.md Recorrido del código en lenguaje simple (empezar por acá)
     base-de-datos.md           Diagrama ER, relaciones, normalización, seguridad
     defensa-oral.md            Explicaciones simples, guion de demo y preguntas probables
     guia-administracion.md     Qué se modifica y desde dónde (panel vs. código)

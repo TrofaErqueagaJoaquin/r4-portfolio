@@ -1,3 +1,5 @@
+// QUÉ HACE: Sección "Experiencia": trae la experiencia de la base y la
+// muestra como línea de tiempo.
 import { SectionHeading } from '../common/SectionHeading.jsx'
 import { ScrollReveal } from '../common/ScrollReveal.jsx'
 import { Spinner } from '../common/Spinner.jsx'

@@ -1,3 +1,5 @@
+// QUÉ HACE: Recibe una imagen desde el panel y la sube a Supabase Storage;
+// devuelve el link público.
 import { uploadImage } from '../services/storage.service.js'
 
 export const uploadsController = {

@@ -1,3 +1,5 @@
+// QUÉ HACE: Direcciones de tecnologías: ver es público; crear, editar y
+// borrar piden sesión (requireAuth).
 import { Router } from 'express'
 import { technologiesController } from '../controllers/resources.controller.js'
 import { requireAuth } from '../middleware/requireAuth.js'

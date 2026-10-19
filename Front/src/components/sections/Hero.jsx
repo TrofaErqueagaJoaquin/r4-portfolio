@@ -1,3 +1,5 @@
+// QUÉ HACE: Primera sección de la página: saludo, nombre, rol, botones y
+// foto de perfil.
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail, Sparkles } from 'lucide-react'
 import { profile } from '../../data/profile.js'

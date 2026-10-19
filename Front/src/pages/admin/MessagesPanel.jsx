@@ -1,3 +1,5 @@
+// QUÉ HACE: Pestaña "Mensajes" del panel: lista lo que llega por el
+// formulario de contacto.
 import { useCallback, useEffect, useState } from 'react'
 import { Archive, Mail, MailOpen, Trash2 } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth.js'

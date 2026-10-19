@@ -1,3 +1,5 @@
+// QUÉ HACE: Atajo para leer la sesión del administrador (token, login,
+// logout) desde cualquier componente.
 import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext.js'
 

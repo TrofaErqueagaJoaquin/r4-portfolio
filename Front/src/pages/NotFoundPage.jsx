@@ -1,3 +1,5 @@
+// QUÉ HACE: Página "404": se muestra si alguien entra a una dirección que
+// no existe.
 import { Button } from '../components/common/Button.jsx'
 import styles from './NotFoundPage.module.css'
 

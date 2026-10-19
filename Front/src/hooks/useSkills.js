@@ -1,3 +1,5 @@
+// QUÉ HACE: Trae la lista de habilidades desde la API (con estado de carga
+// y error).
 import { apiClient } from '../lib/apiClient.js'
 import { useResourceList } from './useResourceList.js'
 

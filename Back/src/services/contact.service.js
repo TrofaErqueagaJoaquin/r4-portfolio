@@ -1,3 +1,5 @@
+// QUÉ HACE: Guarda un mensaje de contacto en la base y después manda el
+// aviso por mail.
 import { supabase } from '../config/supabaseClient.js'
 import { sendContactNotification } from './email.service.js'
 

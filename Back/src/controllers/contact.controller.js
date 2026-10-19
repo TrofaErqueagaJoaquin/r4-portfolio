@@ -1,3 +1,5 @@
+// QUÉ HACE: Recibe los mensajes del formulario de contacto: los valida y,
+// si están bien, los guarda (y avisa por mail).
 import { contactService } from '../services/contact.service.js'
 import { validateContactPayload } from '../validators/contact.validator.js'
 

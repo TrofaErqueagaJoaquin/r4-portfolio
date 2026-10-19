@@ -1,3 +1,5 @@
+// QUÉ HACE: Pantalla de login del panel: pide email y contraseña y, si son
+// correctos, entra a /admin.
 import { useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { Lock } from 'lucide-react'

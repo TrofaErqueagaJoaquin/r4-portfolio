@@ -1,3 +1,5 @@
+// QUÉ HACE: Pantalla principal del panel /admin: pestañas (Proyectos,
+// Habilidades, etc.) y botón de cerrar sesión.
 import { useState } from 'react'
 import { ExternalLink, LogOut } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth.js'

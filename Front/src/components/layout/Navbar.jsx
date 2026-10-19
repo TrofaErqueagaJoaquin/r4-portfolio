@@ -1,3 +1,5 @@
+// QUÉ HACE: Barra de navegación de arriba: links a cada sección, botón de
+// tema y menú para celular.
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS } from '../../lib/constants.js'
 import { useActiveSection } from '../../hooks/useActiveSection.js'

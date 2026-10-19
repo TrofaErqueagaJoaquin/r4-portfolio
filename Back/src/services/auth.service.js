@@ -1,3 +1,5 @@
+// QUÉ HACE: Habla con Supabase Auth para comprobar email y contraseña; si
+// son correctos devuelve el token de sesión.
 import { supabase } from '../config/supabaseClient.js'
 
 export const authService = {

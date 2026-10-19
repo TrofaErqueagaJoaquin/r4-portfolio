@@ -1,3 +1,5 @@
+// QUÉ HACE: Reglas de una experiencia (campos obligatorios, fechas
+// válidas) y cómo se guarda en la base.
 import { EXPERIENCE_TYPES, collect, isIsoDate, requiredText } from './common.js'
 
 export function validateExperience(body = {}) {

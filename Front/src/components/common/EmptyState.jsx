@@ -1,3 +1,5 @@
+// QUÉ HACE: Cartel que se muestra cuando una lista está vacía (ej.
+// "Todavía no hay proyectos").
 import styles from './EmptyState.module.css'
 
 export function EmptyState({ icon: Icon, title, description, action }) {

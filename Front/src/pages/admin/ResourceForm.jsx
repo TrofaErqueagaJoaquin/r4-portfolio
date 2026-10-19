@@ -1,3 +1,5 @@
+// QUÉ HACE: Formulario del panel para agregar o editar cualquier cosa; los
+// campos los define adminResources.jsx.
 import { useState } from 'react'
 import { FormField } from '../../components/contact/FormField.jsx'
 import { Button } from '../../components/common/Button.jsx'

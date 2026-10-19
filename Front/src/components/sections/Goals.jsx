@@ -1,3 +1,5 @@
+// QUÉ HACE: Sección "Objetivos e intereses": tarjetas armadas con los
+// datos de data/goals.js.
 import { SectionHeading } from '../common/SectionHeading.jsx'
 import { ScrollReveal } from '../common/ScrollReveal.jsx'
 import { goals } from '../../data/goals.js'

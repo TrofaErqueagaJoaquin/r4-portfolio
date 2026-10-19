@@ -1,3 +1,5 @@
+// QUÉ HACE: Reglas de una habilidad (nombre, categoría válida, nivel del 1
+// al 5) y cómo se guarda en la base.
 import { SKILL_CATEGORIES, collect, requiredText } from './common.js'
 
 export function validateSkill(body = {}) {

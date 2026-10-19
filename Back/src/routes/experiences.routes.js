@@ -1,3 +1,5 @@
+// QUÉ HACE: Direcciones de experiencia: ver es público; crear, editar y
+// borrar piden sesión (requireAuth).
 import { Router } from 'express'
 import { experiencesController } from '../controllers/resources.controller.js'
 import { requireAuth } from '../middleware/requireAuth.js'

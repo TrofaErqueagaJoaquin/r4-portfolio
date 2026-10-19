@@ -1,3 +1,6 @@
+// QUÉ HACE: Arma los controladores de habilidades, experiencia,
+// tecnologías y mensajes usando el controlador genérico
+// (crud.controller.js).
 import { createCrudController } from './crud.controller.js'
 import { skillsService } from '../services/skills.service.js'
 import { experiencesService } from '../services/experiences.service.js'

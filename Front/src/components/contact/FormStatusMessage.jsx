@@ -1,3 +1,5 @@
+// QUÉ HACE: Cartel verde o rojo debajo del formulario: "mensaje enviado" o
+// "hubo un error".
 import { CheckCircle2, XCircle } from 'lucide-react'
 import styles from './FormStatusMessage.module.css'
 

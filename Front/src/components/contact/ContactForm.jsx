@@ -1,3 +1,5 @@
+// QUÉ HACE: Formulario de contacto (nombre, email, mensaje). La lógica
+// está en el hook useContactForm.
 import { Send } from 'lucide-react'
 import { useContactForm } from '../../hooks/useContactForm.js'
 import { Button } from '../common/Button.jsx'

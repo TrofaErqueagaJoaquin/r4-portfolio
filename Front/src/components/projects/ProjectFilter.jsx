@@ -1,3 +1,5 @@
+// QUÉ HACE: Botones para filtrar los proyectos por categoría (Todos, Web,
+// Automatización, etc.).
 import { PROJECT_CATEGORIES } from '../../lib/constants.js'
 import styles from './ProjectFilter.module.css'
 

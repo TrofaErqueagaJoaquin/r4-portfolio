@@ -1,3 +1,5 @@
+// QUÉ HACE: Define las páginas del sitio: "/" (portfolio), "/admin/login",
+// "/admin" (protegida) y la página 404.
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthProvider.jsx'
 import { ProtectedRoute } from './components/common/ProtectedRoute.jsx'

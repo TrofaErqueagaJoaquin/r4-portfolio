@@ -1,3 +1,5 @@
+// QUÉ HACE: Atiende los pedidos de proyectos (listar, crear, editar,
+// borrar): valida los datos y le pasa el trabajo al service.
 import { projectsService } from '../services/projects.service.js'
 import { validateProjectPayload } from '../validators/project.validator.js'
 

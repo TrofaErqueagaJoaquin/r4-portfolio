@@ -1,3 +1,5 @@
+// QUÉ HACE: Reglas del formulario de contacto: nombre, email válido y
+// mensaje con un largo razonable.
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function validateContactPayload(body = {}) {

@@ -1,3 +1,5 @@
+// QUÉ HACE: Un punto de la línea de tiempo de experiencia (ícono, fechas,
+// título y descripción).
 import { Briefcase, GraduationCap, Rocket } from 'lucide-react'
 import { formatDateRange } from '../../lib/format.js'
 import { Badge } from '../common/Badge.jsx'
